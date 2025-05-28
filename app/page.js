@@ -38,15 +38,21 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                     <br/>
                 </>
             );
+        } else {
+            return (
+                <>
+                    <div>to <em className="text-danger">(belum diisi)</em></div>
+                    <br/>
+                </>
+            );
         }
-        return null;
     }
 
     function previewSausage() {
         if (sausage !== 0) {
             return (
                 <>
-                    <div>▪️Sosis</div>
+                    <div>▪️Sosis Ayam</div>
                     <div>{sausage} pack x {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
                     <br/>
                 </>
@@ -58,7 +64,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
         if (katsu !== 0) {
             return (
                 <>
-                    <div>▪️Katsu</div>
+                    <div>▪️ Chicken Katsu</div>
                     <div>{katsu} pack x {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
                     <br/>
                 </>
@@ -101,8 +107,8 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
     function generateSausage() {
         if (sausage !== 0) {
-            return "▪️Sosis\n" +
-                sausage + "pack x " + sausagePrice.toLocaleString() +
+            return "▪️Sosis Ayam\n" +
+                sausage + " pack x " + sausagePrice.toLocaleString() +
                 " = Rp. " + (sausage * sausagePrice).toLocaleString() + "\n\n";
         }
         return '';
@@ -110,7 +116,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
     function generateKatsu() {
         if (katsu !== 0) {
-            return "▪️Katsu\n" +
+            return "▪️ Chicken Katsu\n" +
                 katsu + " pack x " + katsuPrice.toLocaleString()
                 + " = Rp. " + (katsu * katsuPrice).toLocaleString() + "\n\n";
         }
