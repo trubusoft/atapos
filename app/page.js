@@ -52,7 +52,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
         if (sausage !== 0) {
             return (
                 <>
-                    <div>▪️Sosis</div>
+                    <div>▪️Sosis Ayam</div>
                     <div>{sausage} pack x {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
                     <br/>
                 </>
@@ -64,7 +64,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
         if (katsu !== 0) {
             return (
                 <>
-                    <div>▪️Katsu</div>
+                    <div>▪️ Chicken Katsu</div>
                     <div>{katsu} pack x {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
                     <br/>
                 </>
