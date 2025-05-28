@@ -107,7 +107,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
     function generateSausage() {
         if (sausage !== 0) {
-            return "▪️Sosis\n" +
+            return "▪️Sosis Ayam\n" +
                 sausage + " pack x " + sausagePrice.toLocaleString() +
                 " = Rp. " + (sausage * sausagePrice).toLocaleString() + "\n\n";
         }
@@ -116,7 +116,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
     function generateKatsu() {
         if (katsu !== 0) {
-            return "▪️Katsu\n" +
+            return "▪️ Chicken Katsu\n" +
                 katsu + " pack x " + katsuPrice.toLocaleString()
                 + " = Rp. " + (katsu * katsuPrice).toLocaleString() + "\n\n";
         }
