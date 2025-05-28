@@ -38,8 +38,14 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                     <br/>
                 </>
             );
+        } else {
+            return (
+                <>
+                    <div>to <em className="text-danger">(belum diisi)</em></div>
+                    <br/>
+                </>
+            );
         }
-        return null;
     }
 
     function previewSausage() {
