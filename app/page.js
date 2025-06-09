@@ -276,7 +276,23 @@ export default function Pos() {
     }, [katsu, sausage, shippingCost]);
 
     function handleNameChange(event) {
-        setName(event.target.value);
+        let newName = event.target.value;
+
+        // update name on individual state
+        setName(newName);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: newName,
+                    sausage: item.sausage,
+                    katsu: item.katsu,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
     }
 
     function handleShippingCostChange(event) {
