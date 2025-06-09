@@ -278,7 +278,7 @@ export default function Pos() {
     function handleNameChange(event) {
         let newName = event.target.value;
 
-        // update name on individual state
+        // update individual state
         setName(newName);
 
         // also update on global state
@@ -301,7 +301,7 @@ export default function Pos() {
         if (/^\d+$/.test(inputValue) || inputValue === '') {
             let integerValue = parseInt(inputValue, 10);
 
-            // update shipping cost on individual state
+            // update individual state
             setShippingCost(integerValue);
 
             // also update on global state
@@ -320,12 +320,44 @@ export default function Pos() {
     }
 
     const addSausage = () => {
-        setSausage(sausage + 1);
+        let newSausage = sausage + 1;
+
+        // update individual state
+        setSausage(newSausage);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: item.name,
+                    sausage: newSausage,
+                    katsu: item.katsu,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
     }
 
     const reduceSausage = () => {
         if (0 < sausage) {
-            setSausage(sausage - 1);
+            let newSausage = sausage - 1;
+
+            // update individual state
+            setSausage(newSausage);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: newSausage,
+                        katsu: item.katsu,
+                        shippingCost: item.shippingCost,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
         }
     }
 
