@@ -213,6 +213,25 @@ export default function Pos() {
             setOrderNumber(orderNumber - 1);
         }
     }
+
+    // global state that contains all orders
+    const [global, setGlobal] = useState(
+        Array.from(
+            // initialize list with 50 elements (current max order is 50) ...
+            {length: 50},
+            // ... with empty order data
+            (_, index) => {
+                return {
+                    name: '',
+                    sausage: 0,
+                    katsu: 0,
+                    shippingCost: 0,
+                }
+            }
+        )
+    );
+
+    // handling individual data
     let [name, setName] = useState('');
     const [total, setTotal] = useState(0);
     const [sausage, setSausage] = useState(0);
