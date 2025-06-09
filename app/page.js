@@ -7,6 +7,7 @@ import {RiPencilLine} from "react-icons/ri";
 import {FiMinus} from "react-icons/fi";
 import {AddOrderNumber, ReduceOrderNumber, ShowOrderNumber} from "@/app/fragments/order-number";
 
+const maxOrderNumber = 50;
 const sausagePrice = 27_000;
 const katsuPrice = 37_000;
 
@@ -201,7 +202,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
 export default function Pos() {
     const [orderNumber, setOrderNumber] = useState(1);
-    const canAddOrderNumber = () => orderNumber < 50;
+    const canAddOrderNumber = () => orderNumber < maxOrderNumber;
     const canReduceOrderNumber = () => 1 < orderNumber;
     const addOrderNumber = () => {
         if (canAddOrderNumber()) {
@@ -217,8 +218,8 @@ export default function Pos() {
     // global state that contains all orders
     const [global, setGlobal] = useState(
         Array.from(
-            // initialize list with 50 elements (current max order is 50) ...
-            {length: 50 + 1},
+            // initialize list with {maxOrderNumber} elements ... (0 and maxOrderNumber+1 is left unused for simplicity)
+            {length:  maxOrderNumber + 1},
             // ... with empty order data
             (_, index) => {
                 return {
