@@ -239,6 +239,42 @@ export default function Pos() {
     const [shippingCost, setShippingCost] = useState(0);
     const [shippingCostEdit, setShippingCostEdit] = useState(false);
 
+    // update global state when any change on the current orderNumber
+    // the use of setGlobal(global => ...) here is important to avoid infinite rendering
+    // and global to be included inside dependency array
+    useEffect(() => {
+        setGlobal((global) => {
+            global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: name,
+                        sausage: sausage,
+                        katsu: katsu,
+                        shippingCost: shippingCost,
+                    };
+                } else {
+                    return item
+                }
+            });
+            return global;
+        });
+    }, [orderNumber, name, sausage, katsu, shippingCost]);
+
+    // update individual state when global state change occur (related to previous useEffect)
+    useEffect(() => {
+        let currentGlobal = global[orderNumber];
+        setName(currentGlobal.name);
+        setKatsu(currentGlobal.katsu);
+        setSausage(currentGlobal.sausage);
+        setShippingCost(currentGlobal.shippingCost);
+    }, [orderNumber, global]);
+
+    // DEBUG: log current global
+    // useEffect(() => {
+    //     let currentGlobal = global[orderNumber];
+    //     console.log('current global', orderNumber, currentGlobal)
+    // }, [orderNumber, global]);
+
     const nameRef = useRef(null);
     function handleNameFocus() {
         nameRef.current.select();
