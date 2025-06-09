@@ -257,7 +257,9 @@ export default function Pos() {
     }
 
     const addOrderNumber = () => {
-        setOrderNumber(orderNumber + 1);
+        if (orderNumber < 50) {
+            setOrderNumber(orderNumber + 1);
+        }
     }
 
     const reduceOrderNumber = () => {
