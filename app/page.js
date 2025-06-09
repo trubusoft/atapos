@@ -297,16 +297,6 @@ export default function Pos() {
         }
     }
 
-    const addShipping = () => {
-        setShippingCost(shippingCost + 1_000);
-    }
-
-    const reduceShipping = () => {
-        if (0 < shippingCost) {
-            setShippingCost(shippingCost - 1_000);
-        }
-    }
-
     const toggleShippingCostEdit = () => {
         setShippingCostEdit(!shippingCostEdit);
     }
