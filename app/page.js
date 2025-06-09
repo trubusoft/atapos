@@ -201,7 +201,19 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
 export default function Pos() {
     const [orderNumber, setOrderNumber] = useState(1);
-    const [name, setName] = useState('');
+    const canAddOrderNumber = () => orderNumber < 50;
+    const canReduceOrderNumber = () => 1 < orderNumber;
+    const addOrderNumber = () => {
+        if (canAddOrderNumber()) {
+            setOrderNumber(orderNumber + 1);
+        }
+    }
+    const reduceOrderNumber = () => {
+        if (canReduceOrderNumber()) {
+            setOrderNumber(orderNumber - 1);
+        }
+    }
+    let [name, setName] = useState('');
     const [total, setTotal] = useState(0);
     const [sausage, setSausage] = useState(0);
     const [katsu, setKatsu] = useState(0);
@@ -254,26 +266,6 @@ export default function Pos() {
         if (/^\d+$/.test(inputValue) || inputValue === '') {
             let integerValue = parseInt(inputValue, 10);
             setShippingCost(integerValue);
-        }
-    }
-
-    const canAddOrderNumber = () => {
-        return orderNumber < 50;
-    }
-
-    const canReduceOrderNumber = () => {
-        return 1 < orderNumber;
-    }
-
-    const addOrderNumber = () => {
-        if (canAddOrderNumber()) {
-            setOrderNumber(orderNumber + 1);
-        }
-    }
-
-    const reduceOrderNumber = () => {
-        if (canReduceOrderNumber()) {
-            setOrderNumber(orderNumber - 1);
         }
     }
 
