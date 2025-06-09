@@ -300,7 +300,22 @@ export default function Pos() {
         let inputValue = event.target.value;
         if (/^\d+$/.test(inputValue) || inputValue === '') {
             let integerValue = parseInt(inputValue, 10);
+
+            // update shipping cost on individual state
             setShippingCost(integerValue);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: item.sausage,
+                        katsu: item.katsu,
+                        shippingCost: integerValue,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
         }
     }
 
