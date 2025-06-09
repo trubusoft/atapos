@@ -399,6 +399,7 @@ export default function Pos() {
                                 type="text"
                                 className="form-control"
                                 onInput={handleNameChange}
+                                value={name}
                                 placeholder="Nama"
                             />
                         </form>
