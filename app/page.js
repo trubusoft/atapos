@@ -362,12 +362,44 @@ export default function Pos() {
     }
 
     const addKatsu = () => {
-        setKatsu(katsu + 1);
+        let newKatsu = katsu + 1;
+
+        // update individual state
+        setKatsu(newKatsu);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: item.name,
+                    sausage: item.sausage,
+                    katsu: newKatsu,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
     }
 
     const reduceKatsu = () => {
-        if (0 < katsuPrice) {
-            setKatsu(katsu - 1);
+        if (0 < katsu) {
+            let newKatsu = katsu - 1;
+
+            // update individual state
+            setKatsu(newKatsu);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: item.sausage,
+                        katsu: newKatsu,
+                        shippingCost: item.shippingCost,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
         }
     }
 
