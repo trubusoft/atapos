@@ -256,14 +256,22 @@ export default function Pos() {
         }
     }
 
+    const canAddOrderNumber = () => {
+        return orderNumber < 50;
+    }
+
+    const canReduceOrderNumber = () => {
+        return 1 < orderNumber;
+    }
+
     const addOrderNumber = () => {
-        if (orderNumber < 50) {
+        if (canAddOrderNumber()) {
             setOrderNumber(orderNumber + 1);
         }
     }
 
     const reduceOrderNumber = () => {
-        if (1 < orderNumber) {
+        if (canReduceOrderNumber()) {
             setOrderNumber(orderNumber - 1);
         }
     }
