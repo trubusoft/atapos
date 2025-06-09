@@ -542,7 +542,7 @@ export default function Pos() {
                                 className="form-control"
                                 onInput={handleNameChange}
                                 value={name}
-                                placeholder="Nama"
+                                placeholder={`Pembeli ke-${orderNumber}`}
                             />
                         </form>
                     </div>
