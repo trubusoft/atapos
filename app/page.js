@@ -218,7 +218,7 @@ export default function Pos() {
     const [global, setGlobal] = useState(
         Array.from(
             // initialize list with 50 elements (current max order is 50) ...
-            {length: 50},
+            {length: 50 + 1},
             // ... with empty order data
             (_, index) => {
                 return {
