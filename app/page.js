@@ -240,7 +240,7 @@ export default function Pos() {
     const [shippingCost, setShippingCost] = useState(0);
     const [shippingCostEdit, setShippingCostEdit] = useState(false);
 
-    // update global state when any change on the current orderNumber
+    // update global state when any change happen on the current orderNumber
     // the use of setGlobal(global => ...) here is important to avoid infinite rendering
     // and global to be included inside dependency array
     useEffect(() => {
