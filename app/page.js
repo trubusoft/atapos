@@ -5,6 +5,7 @@ import {useEffect, useRef, useState} from "react";
 import Image from "next/image";
 import {RiPencilLine} from "react-icons/ri";
 import {FiMinus} from "react-icons/fi";
+import {AddOrderNumber, ReduceOrderNumber, ShowOrderNumber} from "@/app/fragments/order-number";
 
 const sausagePrice = 27_000;
 const katsuPrice = 37_000;
@@ -419,9 +420,9 @@ export default function Pos() {
                     </div>
                     <div className="container">
                         <div className="text-center">
-                            <button className="btn btn-light" onClick={reduceOrderNumber}>←</button>
-                            <span className="fw-bold mx-2"><strong>#{orderNumber}</strong></span>
-                            <button className="btn btn-light" onClick={addOrderNumber}>→</button>
+                            <ReduceOrderNumber evaluationFunction={canReduceOrderNumber} onClickHandler={reduceOrderNumber}/>
+                            <ShowOrderNumber orderNumber={orderNumber}/>
+                            <AddOrderNumber evaluationFunction={canAddOrderNumber} onClickHandler={addOrderNumber}/>
                         </div>
                     </div>
                 </div>
