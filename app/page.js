@@ -6,6 +6,7 @@ import Image from "next/image";
 import {RiPencilLine} from "react-icons/ri";
 import {FiMinus} from "react-icons/fi";
 import {AddOrderNumber, ReduceOrderNumber, ShowOrderNumber} from "@/app/fragments/order-number";
+import SendButton from "@/app/fragments/send";
 
 const maxOrderNumber = 50;
 const sausagePrice = 27_000;
@@ -164,7 +165,13 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
 
     return (
         <>
-            <div className="mb-4">
+            <div className="container mb-3">
+                <div className="text-center row">
+                    <SendButton handleOnclick={handleSend} />
+                </div>
+            </div>
+
+            <div className="mb-3">
                 <div className="alert alert-light">
                     <strong>Atap&#39;s Kitchen</strong>
                     <br/>
@@ -189,11 +196,9 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                 </div>
             </div>
 
-            <div className="container mb-4">
+            <div className="container mb-3">
                 <div className="text-center row">
-                    <button className="btn btn-success text-center" onClick={handleSend}>
-                        Kirim
-                    </button>
+                    <SendButton handleOnclick={handleSend} />
                 </div>
             </div>
         </>
