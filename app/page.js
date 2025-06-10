@@ -598,7 +598,7 @@ export default function Pos() {
                         <th scope="col" style={{width: '10%'}}>Aksi</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="align-middle">
                     {getSausageRow()}
                     {getKatsuRow()}
                     {getEmptyRow()}
