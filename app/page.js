@@ -242,6 +242,7 @@ export default function Pos() {
     const [total, setTotal] = useState(0);
     const [sausage, setSausage] = useState(0);
     const [katsu, setKatsu] = useState(0);
+    const [meatball, setMeatball] = useState(0);
     const [shippingCost, setShippingCost] = useState(0);
     const [shippingCostEdit, setShippingCostEdit] = useState(false);
 
@@ -445,6 +446,50 @@ export default function Pos() {
         }
     }
 
+    const addMeatball = () => {
+        let newMeatball = meatball + 1;
+
+        // update individual state
+        setMeatball(newMeatball);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: item.name,
+                    sausage: item.sausage,
+                    katsu: item.katsu,
+                    meatball: newMeatball,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
+    }
+
+    const reduceMeatball = () => {
+        if (0 < meatball) {
+            let newMeatball = meatball - 1;
+
+            // update individual state
+            setMeatball(newMeatball);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: item.sausage,
+                        katsu: item.katsu,
+                        meatball: newMeatball,
+                        shippingCost: item.shippingCost,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
+        }
+    }
+
     const toggleShippingCostEdit = () => {
         setShippingCostEdit(!shippingCostEdit);
     }
@@ -587,7 +632,7 @@ export default function Pos() {
                             priority
                         />
                     </button>
-                    <button className="btn btn-light me-1 border-dark-subtle" onClick={addKatsu}>
+                    <button className="btn btn-light me-1 border-dark-subtle" onClick={addMeatball}>
                         <Image
                             src="/atapos/meatballs.png"
                             alt="bakso logo"
