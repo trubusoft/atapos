@@ -11,6 +11,7 @@ import SendButton from "@/app/fragments/send";
 const maxOrderNumber = 50;
 const sausagePrice = 27_000;
 const katsuPrice = 37_000;
+const meatballPrice = 25_000;
 
 function getCurrentDate() {
     const now = new Date();
@@ -22,7 +23,7 @@ function getCurrentDate() {
     return now.toLocaleString('id-ID', options);
 }
 
-function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
+function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, total}) {
     function previewDate() {
         let humanDate = getCurrentDate();
         return (
@@ -69,6 +70,18 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                 <>
                     <div>▪️ Chicken Katsu</div>
                     <div>{katsu} pack x {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
+                    <br/>
+                </>
+            )
+        }
+    }
+
+    function previewMeatball() {
+        if (meatball !== 0) {
+            return (
+                <>
+                    <div>▪️ Bakso Instan</div>
+                    <div>{meatball} pack x {meatballPrice.toLocaleString()} = Rp. {(meatball * meatballPrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -126,6 +139,15 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
         return '';
     }
 
+    function generateMeatball() {
+        if (meatball !== 0) {
+            return "▪️ Bakso Instan\n" +
+              meatball + " pack x " + meatballPrice.toLocaleString()
+              + " = Rp. " + (meatball * meatballPrice).toLocaleString() + "\n\n";
+        }
+        return '';
+    }
+
     function generateShipping() {
         if (!isNaN(shippingCost) && shippingCost !== 0) {
             return "▪️Ongkir Rp. " + shippingCost.toLocaleString() + "\n\n";
@@ -150,6 +172,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
             generateName() +
             generateSausage() +
             generateKatsu() +
+            generateMeatball() +
             generateShipping() +
             generateTotal() +
             "*Pembayaran Transfer*\n" +
@@ -182,6 +205,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                     {previewName()}
                     {previewSausage()}
                     {previewKatsu()}
+                    {previewMeatball()}
                     {previewShipping()}
                     {previewTotal()}
 
