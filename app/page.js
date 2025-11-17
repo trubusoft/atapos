@@ -331,6 +331,7 @@ export default function Pos() {
                     name: newName,
                     sausage: item.sausage,
                     katsu: item.katsu,
+                    meatball: item.meatball,
                     shippingCost: item.shippingCost,
                 }
             } else return item;
@@ -354,6 +355,7 @@ export default function Pos() {
                         name: item.name,
                         sausage: item.sausage,
                         katsu: item.katsu,
+                        meatball: item.meatball,
                         shippingCost: integerValue,
                     }
                 } else return item;
@@ -375,6 +377,7 @@ export default function Pos() {
                     name: item.name,
                     sausage: newSausage,
                     katsu: item.katsu,
+                    meatball: item.meatball,
                     shippingCost: item.shippingCost,
                 }
             } else return item;
@@ -396,6 +399,7 @@ export default function Pos() {
                         name: item.name,
                         sausage: newSausage,
                         katsu: item.katsu,
+                        meatball: item.meatball,
                         shippingCost: item.shippingCost,
                     }
                 } else return item;
@@ -417,6 +421,7 @@ export default function Pos() {
                     name: item.name,
                     sausage: item.sausage,
                     katsu: newKatsu,
+                    meatball: item.meatball,
                     shippingCost: item.shippingCost,
                 }
             } else return item;
@@ -438,6 +443,7 @@ export default function Pos() {
                         name: item.name,
                         sausage: item.sausage,
                         katsu: newKatsu,
+                        meatball: item.meatball,
                         shippingCost: item.shippingCost,
                     }
                 } else return item;
