@@ -562,6 +562,23 @@ export default function Pos() {
         )
     }
 
+    function getMeatballRow() {
+        if (meatball === 0) return null;
+
+        return (
+            <tr>
+                <th scope="row" className="text-start">Bakso Instan</th>
+                <td className="text-end">Rp. {meatballPrice.toLocaleString()}</td>
+                <td>{meatball}</td>
+                <td className="text text-center">
+                    <button className="btn btn-light border-danger-subtle text-danger" onClick={reduceMeatball}>
+                        <FiMinus/>
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
     function getEmptyRow() {
         if (sausage === 0 && katsu === 0 && meatball === 0) {
             return (
@@ -689,6 +706,7 @@ export default function Pos() {
                     <tbody className="align-middle">
                     {getSausageRow()}
                     {getKatsuRow()}
+                    {getMeatballRow()}
                     {getEmptyRow()}
                     </tbody>
                     <tfoot>
