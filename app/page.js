@@ -231,6 +231,7 @@ export default function Pos() {
                     name: '',
                     sausage: 0,
                     katsu: 0,
+                    meatball: 0,
                     shippingCost: 0,
                 }
             }
@@ -257,6 +258,7 @@ export default function Pos() {
                         name: name,
                         sausage: sausage,
                         katsu: katsu,
+                        meatball: meatball,
                         shippingCost: shippingCost,
                     };
                 } else {
@@ -265,7 +267,7 @@ export default function Pos() {
             });
             return global;
         });
-    }, [orderNumber, name, sausage, katsu, shippingCost]);
+    }, [orderNumber, name, sausage, katsu, meatball, shippingCost]);
 
     // update individual state when global state change occur (related to previous useEffect)
     useEffect(() => {
@@ -273,6 +275,7 @@ export default function Pos() {
         setName(currentGlobal.name);
         setKatsu(currentGlobal.katsu);
         setSausage(currentGlobal.sausage);
+        setMeatball(currentGlobal.meatball);
         setShippingCost(currentGlobal.shippingCost);
     }, [orderNumber, global]);
 
