@@ -11,6 +11,7 @@ import SendButton from "@/app/fragments/send";
 const maxOrderNumber = 50;
 const sausagePrice = 27_000;
 const katsuPrice = 37_000;
+const meatballPrice = 25_000;
 
 function getCurrentDate() {
     const now = new Date();
@@ -22,7 +23,7 @@ function getCurrentDate() {
     return now.toLocaleString('id-ID', options);
 }
 
-function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
+function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, total}) {
     function previewDate() {
         let humanDate = getCurrentDate();
         return (
@@ -69,6 +70,18 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                 <>
                     <div>▪️ Chicken Katsu</div>
                     <div>{katsu} pack x {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
+                    <br/>
+                </>
+            )
+        }
+    }
+
+    function previewMeatball() {
+        if (meatball !== 0) {
+            return (
+                <>
+                    <div>▪️ Bakso Instan</div>
+                    <div>{meatball} pack x {meatballPrice.toLocaleString()} = Rp. {(meatball * meatballPrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -126,6 +139,15 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
         return '';
     }
 
+    function generateMeatball() {
+        if (meatball !== 0) {
+            return "▪️ Bakso Instan\n" +
+              meatball + " pack x " + meatballPrice.toLocaleString()
+              + " = Rp. " + (meatball * meatballPrice).toLocaleString() + "\n\n";
+        }
+        return '';
+    }
+
     function generateShipping() {
         if (!isNaN(shippingCost) && shippingCost !== 0) {
             return "▪️Ongkir Rp. " + shippingCost.toLocaleString() + "\n\n";
@@ -150,6 +172,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
             generateName() +
             generateSausage() +
             generateKatsu() +
+            generateMeatball() +
             generateShipping() +
             generateTotal() +
             "*Pembayaran Transfer*\n" +
@@ -182,6 +205,7 @@ function Preview({orderNumber, name, sausage, katsu, shippingCost, total}) {
                     {previewName()}
                     {previewSausage()}
                     {previewKatsu()}
+                    {previewMeatball()}
                     {previewShipping()}
                     {previewTotal()}
 
@@ -231,6 +255,7 @@ export default function Pos() {
                     name: '',
                     sausage: 0,
                     katsu: 0,
+                    meatball: 0,
                     shippingCost: 0,
                 }
             }
@@ -242,6 +267,7 @@ export default function Pos() {
     const [total, setTotal] = useState(0);
     const [sausage, setSausage] = useState(0);
     const [katsu, setKatsu] = useState(0);
+    const [meatball, setMeatball] = useState(0);
     const [shippingCost, setShippingCost] = useState(0);
     const [shippingCostEdit, setShippingCostEdit] = useState(false);
 
@@ -256,6 +282,7 @@ export default function Pos() {
                         name: name,
                         sausage: sausage,
                         katsu: katsu,
+                        meatball: meatball,
                         shippingCost: shippingCost,
                     };
                 } else {
@@ -264,7 +291,7 @@ export default function Pos() {
             });
             return global;
         });
-    }, [orderNumber, name, sausage, katsu, shippingCost]);
+    }, [orderNumber, name, sausage, katsu, meatball, shippingCost]);
 
     // update individual state when global state change occur (related to previous useEffect)
     useEffect(() => {
@@ -272,6 +299,7 @@ export default function Pos() {
         setName(currentGlobal.name);
         setKatsu(currentGlobal.katsu);
         setSausage(currentGlobal.sausage);
+        setMeatball(currentGlobal.meatball);
         setShippingCost(currentGlobal.shippingCost);
     }, [orderNumber, global]);
 
@@ -313,9 +341,10 @@ export default function Pos() {
     useEffect(() => {
         let katsuTotal = katsu * katsuPrice;
         let sausageTotal = sausage * sausagePrice;
-        let total = katsuTotal + sausageTotal + shippingCost;
+        let meatballTotal = meatball * meatballPrice;
+        let total = katsuTotal + sausageTotal + meatballTotal + shippingCost;
         setTotal(total)
-    }, [katsu, sausage, shippingCost]);
+    }, [katsu, sausage, meatball, shippingCost]);
 
     function handleNameChange(event) {
         let newName = event.target.value;
@@ -330,6 +359,7 @@ export default function Pos() {
                     name: newName,
                     sausage: item.sausage,
                     katsu: item.katsu,
+                    meatball: item.meatball,
                     shippingCost: item.shippingCost,
                 }
             } else return item;
@@ -353,6 +383,7 @@ export default function Pos() {
                         name: item.name,
                         sausage: item.sausage,
                         katsu: item.katsu,
+                        meatball: item.meatball,
                         shippingCost: integerValue,
                     }
                 } else return item;
@@ -374,6 +405,7 @@ export default function Pos() {
                     name: item.name,
                     sausage: newSausage,
                     katsu: item.katsu,
+                    meatball: item.meatball,
                     shippingCost: item.shippingCost,
                 }
             } else return item;
@@ -395,6 +427,7 @@ export default function Pos() {
                         name: item.name,
                         sausage: newSausage,
                         katsu: item.katsu,
+                        meatball: item.meatball,
                         shippingCost: item.shippingCost,
                     }
                 } else return item;
@@ -416,6 +449,7 @@ export default function Pos() {
                     name: item.name,
                     sausage: item.sausage,
                     katsu: newKatsu,
+                    meatball: item.meatball,
                     shippingCost: item.shippingCost,
                 }
             } else return item;
@@ -437,6 +471,51 @@ export default function Pos() {
                         name: item.name,
                         sausage: item.sausage,
                         katsu: newKatsu,
+                        meatball: item.meatball,
+                        shippingCost: item.shippingCost,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
+        }
+    }
+
+    const addMeatball = () => {
+        let newMeatball = meatball + 1;
+
+        // update individual state
+        setMeatball(newMeatball);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: item.name,
+                    sausage: item.sausage,
+                    katsu: item.katsu,
+                    meatball: newMeatball,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
+    }
+
+    const reduceMeatball = () => {
+        if (0 < meatball) {
+            let newMeatball = meatball - 1;
+
+            // update individual state
+            setMeatball(newMeatball);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: item.sausage,
+                        katsu: item.katsu,
+                        meatball: newMeatball,
                         shippingCost: item.shippingCost,
                     }
                 } else return item;
@@ -483,8 +562,25 @@ export default function Pos() {
         )
     }
 
+    function getMeatballRow() {
+        if (meatball === 0) return null;
+
+        return (
+            <tr>
+                <th scope="row" className="text-start">Bakso Instan</th>
+                <td className="text-end">Rp. {meatballPrice.toLocaleString()}</td>
+                <td>{meatball}</td>
+                <td className="text text-center">
+                    <button className="btn btn-light border-danger-subtle text-danger" onClick={reduceMeatball}>
+                        <FiMinus/>
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
     function getEmptyRow() {
-        if (sausage === 0 && katsu === 0) {
+        if (sausage === 0 && katsu === 0 && meatball === 0) {
             return (
                 <tr>
                     <th colSpan={4} className="fw-normal"><em>Kosong</em></th>
@@ -587,6 +683,15 @@ export default function Pos() {
                             priority
                         />
                     </button>
+                    <button className="btn btn-light me-1 border-dark-subtle" onClick={addMeatball}>
+                        <Image
+                            src="/atapos/meatballs.png"
+                            alt="bakso logo"
+                            width={40}
+                            height={40}
+                            priority
+                        />
+                    </button>
                 </div>
 
                 <table className="table text text-center">
@@ -601,6 +706,7 @@ export default function Pos() {
                     <tbody className="align-middle">
                     {getSausageRow()}
                     {getKatsuRow()}
+                    {getMeatballRow()}
                     {getEmptyRow()}
                     </tbody>
                     <tfoot>
