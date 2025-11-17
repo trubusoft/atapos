@@ -734,6 +734,7 @@ export default function Pos() {
                 name={name}
                 sausage={sausage}
                 katsu={katsu}
+                meatball={meatball}
                 shippingCost={shippingCost}
                 total={total}
             />
