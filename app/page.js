@@ -341,9 +341,10 @@ export default function Pos() {
     useEffect(() => {
         let katsuTotal = katsu * katsuPrice;
         let sausageTotal = sausage * sausagePrice;
-        let total = katsuTotal + sausageTotal + shippingCost;
+        let meatballTotal = meatball * meatballPrice;
+        let total = katsuTotal + sausageTotal + meatballTotal + shippingCost;
         setTotal(total)
-    }, [katsu, sausage, shippingCost]);
+    }, [katsu, sausage, meatball, shippingCost]);
 
     function handleNameChange(event) {
         let newName = event.target.value;
