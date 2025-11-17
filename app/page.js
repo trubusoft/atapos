@@ -587,6 +587,15 @@ export default function Pos() {
                             priority
                         />
                     </button>
+                    <button className="btn btn-light me-1 border-dark-subtle" onClick={addKatsu}>
+                        <Image
+                            src="/atapos/meatballs.png"
+                            alt="bakso logo"
+                            width={40}
+                            height={40}
+                            priority
+                        />
+                    </button>
                 </div>
 
                 <table className="table text text-center">
