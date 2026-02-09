@@ -675,6 +675,15 @@ export default function Pos() {
                             priority
                         />
                     </button>
+                    <button className="btn btn-light me-1 border-dark-subtle" onClick={addSausageCheese}>
+                        <Image
+                            src="/atapos/sausages_cheese.png"
+                            alt="sasuage cheese logo"
+                            width={40}
+                            height={40}
+                            priority
+                        />
+                    </button>
                     <button className="btn btn-light me-1 border-dark-subtle" onClick={addKatsu}>
                         <Image
                             src="/atapos/katsu.png"
