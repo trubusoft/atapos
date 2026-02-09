@@ -124,7 +124,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
     function generateSausage() {
         if (sausage !== 0) {
             return "▪️Sosis Ayam\n" +
-                sausage + " pack x " + sausagePrice.toLocaleString() +
+                sausage + " pack x Rp. " + sausagePrice.toLocaleString() +
                 " = Rp. " + (sausage * sausagePrice).toLocaleString() + "\n\n";
         }
         return '';
@@ -133,7 +133,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
     function generateKatsu() {
         if (katsu !== 0) {
             return "▪️ Chicken Katsu\n" +
-                katsu + " pack x " + katsuPrice.toLocaleString()
+                katsu + " pack x Rp. " + katsuPrice.toLocaleString()
                 + " = Rp. " + (katsu * katsuPrice).toLocaleString() + "\n\n";
         }
         return '';
@@ -142,7 +142,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
     function generateMeatball() {
         if (meatball !== 0) {
             return "▪️ Bakso Instan\n" +
-              meatball + " pack x " + meatballPrice.toLocaleString()
+              meatball + " pack x Rp. " + meatballPrice.toLocaleString()
               + " = Rp. " + (meatball * meatballPrice).toLocaleString() + "\n\n";
         }
         return '';
