@@ -10,6 +10,7 @@ import SendButton from "@/app/fragments/send";
 
 const maxOrderNumber = 50;
 const sausagePrice = 27_000;
+const sausageCheesePrice = 32_000;
 const katsuPrice = 37_000;
 const meatballPrice = 25_000;
 
@@ -23,7 +24,7 @@ function getCurrentDate() {
     return now.toLocaleString('id-ID', options);
 }
 
-function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, total}) {
+function Preview({orderNumber, name, sausage, sausageCheese, katsu, meatball, shippingCost, total}) {
     function previewDate() {
         let humanDate = getCurrentDate();
         return (
@@ -56,8 +57,20 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
         if (sausage !== 0) {
             return (
                 <>
-                    <div>▪️Sosis Ayam</div>
-                    <div>{sausage} pack x {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
+                    <div>▪️Sosis Ayam Ori</div>
+                    <div>{sausage} pack x Rp. {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
+                    <br/>
+                </>
+            )
+        }
+    }
+
+    function previewSausageCheese() {
+        if (sausageCheese !== 0) {
+            return (
+                <>
+                    <div>▪️Sosis Ayam Keju</div>
+                    <div>{sausageCheese} pack x Rp. {sausagePrice.toLocaleString()} = Rp. {(sausageCheese * sausagePrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -69,7 +82,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             return (
                 <>
                     <div>▪️ Chicken Katsu</div>
-                    <div>{katsu} pack x {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
+                    <div>{katsu} pack x Rp. {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -81,7 +94,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             return (
                 <>
                     <div>▪️ Bakso Instan</div>
-                    <div>{meatball} pack x {meatballPrice.toLocaleString()} = Rp. {(meatball * meatballPrice).toLocaleString()}</div>
+                    <div>{meatball} pack x Rp. {meatballPrice.toLocaleString()} = Rp. {(meatball * meatballPrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -123,9 +136,18 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
 
     function generateSausage() {
         if (sausage !== 0) {
-            return "▪️Sosis Ayam\n" +
-                sausage + " pack x " + sausagePrice.toLocaleString() +
+            return "▪️Sosis Ayam Ori\n" +
+                sausage + " pack x Rp. " + sausagePrice.toLocaleString() +
                 " = Rp. " + (sausage * sausagePrice).toLocaleString() + "\n\n";
+        }
+        return '';
+    }
+
+    function generateSausageCheese() {
+        if (sausageCheese !== 0) {
+            return "▪️Sosis Ayam Keju\n" +
+                sausageCheese + " pack x Rp. " + sausageCheesePrice.toLocaleString() +
+                " = Rp. " + (sausageCheese * sausageCheesePrice).toLocaleString() + "\n\n";
         }
         return '';
     }
@@ -133,7 +155,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
     function generateKatsu() {
         if (katsu !== 0) {
             return "▪️ Chicken Katsu\n" +
-                katsu + " pack x " + katsuPrice.toLocaleString()
+                katsu + " pack x Rp. " + katsuPrice.toLocaleString()
                 + " = Rp. " + (katsu * katsuPrice).toLocaleString() + "\n\n";
         }
         return '';
@@ -142,7 +164,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
     function generateMeatball() {
         if (meatball !== 0) {
             return "▪️ Bakso Instan\n" +
-              meatball + " pack x " + meatballPrice.toLocaleString()
+              meatball + " pack x Rp. " + meatballPrice.toLocaleString()
               + " = Rp. " + (meatball * meatballPrice).toLocaleString() + "\n\n";
         }
         return '';
@@ -171,6 +193,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             generateDate() +
             generateName() +
             generateSausage() +
+            generateSausageCheese() +
             generateKatsu() +
             generateMeatball() +
             generateShipping() +
@@ -204,6 +227,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
                     {previewDate()}
                     {previewName()}
                     {previewSausage()}
+                    {previewSausageCheese()}
                     {previewKatsu()}
                     {previewMeatball()}
                     {previewShipping()}
@@ -254,6 +278,7 @@ export default function Pos() {
                 return {
                     name: '',
                     sausage: 0,
+                    sausageCheese: 0,
                     katsu: 0,
                     meatball: 0,
                     shippingCost: 0,
@@ -266,6 +291,7 @@ export default function Pos() {
     let [name, setName] = useState('');
     const [total, setTotal] = useState(0);
     const [sausage, setSausage] = useState(0);
+    const [sausageCheese, setSausageCheese] = useState(0);
     const [katsu, setKatsu] = useState(0);
     const [meatball, setMeatball] = useState(0);
     const [shippingCost, setShippingCost] = useState(0);
@@ -281,6 +307,7 @@ export default function Pos() {
                     return {
                         name: name,
                         sausage: sausage,
+                        sausageCheese: sausageCheese,
                         katsu: katsu,
                         meatball: meatball,
                         shippingCost: shippingCost,
@@ -291,7 +318,7 @@ export default function Pos() {
             });
             return global;
         });
-    }, [orderNumber, name, sausage, katsu, meatball, shippingCost]);
+    }, [orderNumber, name, sausage, sausageCheese, katsu, meatball, shippingCost]);
 
     // update individual state when global state change occur (related to previous useEffect)
     useEffect(() => {
@@ -299,6 +326,7 @@ export default function Pos() {
         setName(currentGlobal.name);
         setKatsu(currentGlobal.katsu);
         setSausage(currentGlobal.sausage);
+        setSausageCheese(currentGlobal.sausageCheese);
         setMeatball(currentGlobal.meatball);
         setShippingCost(currentGlobal.shippingCost);
     }, [orderNumber, global]);
@@ -341,10 +369,11 @@ export default function Pos() {
     useEffect(() => {
         let katsuTotal = katsu * katsuPrice;
         let sausageTotal = sausage * sausagePrice;
+        let sausageCheeseTotal = sausageCheese * sausageCheesePrice;
         let meatballTotal = meatball * meatballPrice;
-        let total = katsuTotal + sausageTotal + meatballTotal + shippingCost;
+        let total = katsuTotal + sausageTotal + sausageCheeseTotal + meatballTotal + shippingCost;
         setTotal(total)
-    }, [katsu, sausage, meatball, shippingCost]);
+    }, [katsu, sausage, sausageCheese, meatball, shippingCost]);
 
     function handleNameChange(event) {
         let newName = event.target.value;
@@ -358,6 +387,7 @@ export default function Pos() {
                 return {
                     name: newName,
                     sausage: item.sausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: item.katsu,
                     meatball: item.meatball,
                     shippingCost: item.shippingCost,
@@ -382,6 +412,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: item.sausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: item.katsu,
                         meatball: item.meatball,
                         shippingCost: integerValue,
@@ -404,6 +435,7 @@ export default function Pos() {
                 return {
                     name: item.name,
                     sausage: newSausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: item.katsu,
                     meatball: item.meatball,
                     shippingCost: item.shippingCost,
@@ -426,6 +458,53 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: newSausage,
+                        sausageCheese: item.sausageCheese,
+                        katsu: item.katsu,
+                        meatball: item.meatball,
+                        shippingCost: item.shippingCost,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
+        }
+    }
+
+    const addSausageCheese = () => {
+        let newSausageCheese = sausageCheese + 1;
+
+        // update individual state
+        setSausageCheese(newSausageCheese);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: item.name,
+                    sausage: item.sausage,
+                    sausageCheese: newSausageCheese,
+                    katsu: item.katsu,
+                    meatball: item.meatball,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
+    }
+
+    const reduceSausageCheese = () => {
+        if (0 < sausageCheese) {
+            let newSausageCheese = sausageCheese - 1;
+
+            // update individual state
+            setSausageCheese(newSausageCheese);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: item.sausage,
+                        sausageCheese: newSausageCheese,
                         katsu: item.katsu,
                         meatball: item.meatball,
                         shippingCost: item.shippingCost,
@@ -448,6 +527,7 @@ export default function Pos() {
                 return {
                     name: item.name,
                     sausage: item.sausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: newKatsu,
                     meatball: item.meatball,
                     shippingCost: item.shippingCost,
@@ -470,6 +550,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: item.sausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: newKatsu,
                         meatball: item.meatball,
                         shippingCost: item.shippingCost,
@@ -492,6 +573,7 @@ export default function Pos() {
                 return {
                     name: item.name,
                     sausage: item.sausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: item.katsu,
                     meatball: newMeatball,
                     shippingCost: item.shippingCost,
@@ -514,6 +596,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: item.sausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: item.katsu,
                         meatball: newMeatball,
                         shippingCost: item.shippingCost,
@@ -533,11 +616,28 @@ export default function Pos() {
 
         return (
             <tr>
-                <th scope="row" className="text-start">Sosis</th>
+                <th scope="row" className="text-start">Sosis 🐔</th>
                 <td className="text-end">Rp. {sausagePrice.toLocaleString()}</td>
                 <td>{sausage}</td>
                 <td className="text text-center">
                     <button className="btn btn-light border-danger-subtle text-danger" onClick={reduceSausage}>
+                        <FiMinus/>
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
+    function getSausageCheeseRow() {
+        if (sausageCheese === 0) return null;
+
+        return (
+            <tr>
+                <th scope="row" className="text-start">Sosis 🧀</th>
+                <td className="text-end">Rp. {sausageCheesePrice.toLocaleString()}</td>
+                <td>{sausageCheese}</td>
+                <td className="text text-center">
+                    <button className="btn btn-light border-danger-subtle text-danger" onClick={reduceSausageCheese}>
                         <FiMinus/>
                     </button>
                 </td>
@@ -580,7 +680,7 @@ export default function Pos() {
     }
 
     function getEmptyRow() {
-        if (sausage === 0 && katsu === 0 && meatball === 0) {
+        if (sausage === 0 && sausageCheese === 0 && katsu === 0 && meatball === 0) {
             return (
                 <tr>
                     <th colSpan={4} className="fw-normal"><em>Kosong</em></th>
@@ -651,7 +751,7 @@ export default function Pos() {
                 </div>
                 <div className="col-6">
                     <div className="row">
-                        <div className="form-label fw-bold">Nomor Pesanan:</div>
+                        <div className="form-label fw-bold text-center">Nomor Pesanan:</div>
                     </div>
                     <div className="container">
                         <div className="text-center">
@@ -669,6 +769,15 @@ export default function Pos() {
                         <Image
                             src="/atapos/sausages.png"
                             alt="sasuage logo"
+                            width={40}
+                            height={40}
+                            priority
+                        />
+                    </button>
+                    <button className="btn btn-light me-1 border-dark-subtle" onClick={addSausageCheese}>
+                        <Image
+                            src="/atapos/sausages_cheese.png"
+                            alt="sasuage cheese logo"
                             width={40}
                             height={40}
                             priority
@@ -705,6 +814,7 @@ export default function Pos() {
                     </thead>
                     <tbody className="align-middle">
                     {getSausageRow()}
+                    {getSausageCheeseRow()}
                     {getKatsuRow()}
                     {getMeatballRow()}
                     {getEmptyRow()}
@@ -733,6 +843,7 @@ export default function Pos() {
                 orderNumber={orderNumber}
                 name={name}
                 sausage={sausage}
+                sausageCheese={sausageCheese}
                 katsu={katsu}
                 meatball={meatball}
                 shippingCost={shippingCost}
