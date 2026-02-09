@@ -680,7 +680,7 @@ export default function Pos() {
     }
 
     function getEmptyRow() {
-        if (sausage === 0 && katsu === 0 && meatball === 0) {
+        if (sausage === 0 && sausageCheese === 0 && katsu === 0 && meatball === 0) {
             return (
                 <tr>
                     <th colSpan={4} className="fw-normal"><em>Kosong</em></th>
