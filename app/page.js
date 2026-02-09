@@ -533,7 +533,7 @@ export default function Pos() {
 
         return (
             <tr>
-                <th scope="row" className="text-start">Sosis</th>
+                <th scope="row" className="text-start">Sosis 🐔</th>
                 <td className="text-end">Rp. {sausagePrice.toLocaleString()}</td>
                 <td>{sausage}</td>
                 <td className="text text-center">
