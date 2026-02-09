@@ -255,6 +255,7 @@ export default function Pos() {
                 return {
                     name: '',
                     sausage: 0,
+                    sausageCheese: 0,
                     katsu: 0,
                     meatball: 0,
                     shippingCost: 0,
@@ -267,6 +268,7 @@ export default function Pos() {
     let [name, setName] = useState('');
     const [total, setTotal] = useState(0);
     const [sausage, setSausage] = useState(0);
+    const [sausageCheese, setSausageCheese] = useState(0);
     const [katsu, setKatsu] = useState(0);
     const [meatball, setMeatball] = useState(0);
     const [shippingCost, setShippingCost] = useState(0);
@@ -282,6 +284,7 @@ export default function Pos() {
                     return {
                         name: name,
                         sausage: sausage,
+                        sausageCheese: sausageCheese,
                         katsu: katsu,
                         meatball: meatball,
                         shippingCost: shippingCost,
@@ -292,7 +295,7 @@ export default function Pos() {
             });
             return global;
         });
-    }, [orderNumber, name, sausage, katsu, meatball, shippingCost]);
+    }, [orderNumber, name, sausage, sausageCheese, katsu, meatball, shippingCost]);
 
     // update individual state when global state change occur (related to previous useEffect)
     useEffect(() => {
@@ -300,6 +303,7 @@ export default function Pos() {
         setName(currentGlobal.name);
         setKatsu(currentGlobal.katsu);
         setSausage(currentGlobal.sausage);
+        setSausageCheese(currentGlobal.sausageCheese);
         setMeatball(currentGlobal.meatball);
         setShippingCost(currentGlobal.shippingCost);
     }, [orderNumber, global]);
@@ -359,6 +363,7 @@ export default function Pos() {
                 return {
                     name: newName,
                     sausage: item.sausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: item.katsu,
                     meatball: item.meatball,
                     shippingCost: item.shippingCost,
@@ -383,6 +388,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: item.sausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: item.katsu,
                         meatball: item.meatball,
                         shippingCost: integerValue,
@@ -405,6 +411,7 @@ export default function Pos() {
                 return {
                     name: item.name,
                     sausage: newSausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: item.katsu,
                     meatball: item.meatball,
                     shippingCost: item.shippingCost,
@@ -427,6 +434,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: newSausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: item.katsu,
                         meatball: item.meatball,
                         shippingCost: item.shippingCost,
@@ -449,6 +457,7 @@ export default function Pos() {
                 return {
                     name: item.name,
                     sausage: item.sausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: newKatsu,
                     meatball: item.meatball,
                     shippingCost: item.shippingCost,
@@ -471,6 +480,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: item.sausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: newKatsu,
                         meatball: item.meatball,
                         shippingCost: item.shippingCost,
@@ -493,6 +503,7 @@ export default function Pos() {
                 return {
                     name: item.name,
                     sausage: item.sausage,
+                    sausageCheese: item.sausageCheese,
                     katsu: item.katsu,
                     meatball: newMeatball,
                     shippingCost: item.shippingCost,
@@ -515,6 +526,7 @@ export default function Pos() {
                     return {
                         name: item.name,
                         sausage: item.sausage,
+                        sausageCheese: item.sausageCheese,
                         katsu: item.katsu,
                         meatball: newMeatball,
                         shippingCost: item.shippingCost,
