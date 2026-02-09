@@ -57,7 +57,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
         if (sausage !== 0) {
             return (
                 <>
-                    <div>▪️Sosis Ayam</div>
+                    <div>▪️Sosis Ayam Ori</div>
                     <div>{sausage} pack x Rp. {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
                     <br/>
                 </>
@@ -124,7 +124,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
 
     function generateSausage() {
         if (sausage !== 0) {
-            return "▪️Sosis Ayam\n" +
+            return "▪️Sosis Ayam Ori\n" +
                 sausage + " pack x Rp. " + sausagePrice.toLocaleString() +
                 " = Rp. " + (sausage * sausagePrice).toLocaleString() + "\n\n";
         }
