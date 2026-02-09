@@ -628,6 +628,23 @@ export default function Pos() {
         )
     }
 
+    function getSausageCheeseRow() {
+        if (sausageCheese === 0) return null;
+
+        return (
+            <tr>
+                <th scope="row" className="text-start">Sosis 🧀</th>
+                <td className="text-end">Rp. {sausageCheesePrice.toLocaleString()}</td>
+                <td>{sausageCheese}</td>
+                <td className="text text-center">
+                    <button className="btn btn-light border-danger-subtle text-danger" onClick={reduceSausageCheese}>
+                        <FiMinus/>
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
     function getKatsuRow() {
         if (katsu === 0) return null;
 
@@ -797,6 +814,7 @@ export default function Pos() {
                     </thead>
                     <tbody className="align-middle">
                     {getSausageRow()}
+                    {getSausageCheeseRow()}
                     {getKatsuRow()}
                     {getMeatballRow()}
                     {getEmptyRow()}
