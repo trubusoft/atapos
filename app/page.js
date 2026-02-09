@@ -24,7 +24,7 @@ function getCurrentDate() {
     return now.toLocaleString('id-ID', options);
 }
 
-function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, total}) {
+function Preview({orderNumber, name, sausage, sausageCheese, katsu, meatball, shippingCost, total}) {
     function previewDate() {
         let humanDate = getCurrentDate();
         return (
@@ -59,6 +59,18 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
                 <>
                     <div>▪️Sosis Ayam Ori</div>
                     <div>{sausage} pack x Rp. {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
+                    <br/>
+                </>
+            )
+        }
+    }
+
+    function previewSausageCheese() {
+        if (sausageCheese !== 0) {
+            return (
+                <>
+                    <div>▪️Sosis Ayam Keju</div>
+                    <div>{sausageCheese} pack x Rp. {sausagePrice.toLocaleString()} = Rp. {(sausageCheese * sausagePrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -131,6 +143,15 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
         return '';
     }
 
+    function generateSausageCheese() {
+        if (sausageCheese !== 0) {
+            return "▪️Sosis Ayam Keju\n" +
+                sausageCheese + " pack x Rp. " + sausageCheesePrice.toLocaleString() +
+                " = Rp. " + (sausageCheese * sausageCheesePrice).toLocaleString() + "\n\n";
+        }
+        return '';
+    }
+
     function generateKatsu() {
         if (katsu !== 0) {
             return "▪️ Chicken Katsu\n" +
@@ -172,6 +193,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             generateDate() +
             generateName() +
             generateSausage() +
+            generateSausageCheese() +
             generateKatsu() +
             generateMeatball() +
             generateShipping() +
@@ -205,6 +227,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
                     {previewDate()}
                     {previewName()}
                     {previewSausage()}
+                    {previewSausageCheese()}
                     {previewKatsu()}
                     {previewMeatball()}
                     {previewShipping()}
@@ -755,6 +778,7 @@ export default function Pos() {
                 orderNumber={orderNumber}
                 name={name}
                 sausage={sausage}
+                sausageCheese={sausageCheese}
                 katsu={katsu}
                 meatball={meatball}
                 shippingCost={shippingCost}
