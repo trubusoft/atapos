@@ -369,10 +369,11 @@ export default function Pos() {
     useEffect(() => {
         let katsuTotal = katsu * katsuPrice;
         let sausageTotal = sausage * sausagePrice;
+        let sausageCheeseTotal = sausageCheese * sausageCheesePrice;
         let meatballTotal = meatball * meatballPrice;
-        let total = katsuTotal + sausageTotal + meatballTotal + shippingCost;
+        let total = katsuTotal + sausageTotal + sausageCheeseTotal + meatballTotal + shippingCost;
         setTotal(total)
-    }, [katsu, sausage, meatball, shippingCost]);
+    }, [katsu, sausage, sausageCheese, meatball, shippingCost]);
 
     function handleNameChange(event) {
         let newName = event.target.value;
