@@ -651,7 +651,7 @@ export default function Pos() {
                 </div>
                 <div className="col-6">
                     <div className="row">
-                        <div className="form-label fw-bold">Nomor Pesanan:</div>
+                        <div className="form-label fw-bold text-center">Nomor Pesanan:</div>
                     </div>
                     <div className="container">
                         <div className="text-center">
