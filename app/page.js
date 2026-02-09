@@ -469,6 +469,52 @@ export default function Pos() {
         }
     }
 
+    const addSausageCheese = () => {
+        let newSausageCheese = sausageCheese + 1;
+
+        // update individual state
+        setSausageCheese(newSausageCheese);
+
+        // also update on global state
+        let newGlobal = global.map((item, index) => {
+            if (index === orderNumber) {
+                return {
+                    name: item.name,
+                    sausage: item.sausage,
+                    sausageCheese: newSausageCheese,
+                    katsu: item.katsu,
+                    meatball: item.meatball,
+                    shippingCost: item.shippingCost,
+                }
+            } else return item;
+        });
+        setGlobal(newGlobal);
+    }
+
+    const reduceSausageCheese = () => {
+        if (0 < sausageCheese) {
+            let newSausageCheese = sausageCheese - 1;
+
+            // update individual state
+            setSausageCheese(newSausageCheese);
+
+            // also update on global state
+            let newGlobal = global.map((item, index) => {
+                if (index === orderNumber) {
+                    return {
+                        name: item.name,
+                        sausage: item.sausage,
+                        sausageCheese: newSausageCheese,
+                        katsu: item.katsu,
+                        meatball: item.meatball,
+                        shippingCost: item.shippingCost,
+                    }
+                } else return item;
+            });
+            setGlobal(newGlobal);
+        }
+    }
+
     const addKatsu = () => {
         let newKatsu = katsu + 1;
 
