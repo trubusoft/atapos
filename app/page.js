@@ -57,7 +57,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             return (
                 <>
                     <div>▪️Sosis Ayam</div>
-                    <div>{sausage} pack x {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
+                    <div>{sausage} pack x Rp. {sausagePrice.toLocaleString()} = Rp. {(sausage * sausagePrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -69,7 +69,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             return (
                 <>
                     <div>▪️ Chicken Katsu</div>
-                    <div>{katsu} pack x {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
+                    <div>{katsu} pack x Rp. {katsuPrice.toLocaleString()} = Rp. {(katsu * katsuPrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
@@ -81,7 +81,7 @@ function Preview({orderNumber, name, sausage, katsu, meatball, shippingCost, tot
             return (
                 <>
                     <div>▪️ Bakso Instan</div>
-                    <div>{meatball} pack x {meatballPrice.toLocaleString()} = Rp. {(meatball * meatballPrice).toLocaleString()}</div>
+                    <div>{meatball} pack x Rp. {meatballPrice.toLocaleString()} = Rp. {(meatball * meatballPrice).toLocaleString()}</div>
                     <br/>
                 </>
             )
