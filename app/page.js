@@ -10,6 +10,7 @@ import SendButton from "@/app/fragments/send";
 
 const maxOrderNumber = 50;
 const sausagePrice = 27_000;
+const sausageCheesePrice = 32_000;
 const katsuPrice = 37_000;
 const meatballPrice = 25_000;
 
